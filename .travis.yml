@@ -1,17 +1,10 @@
-sudo: required
-services:
-  - docker
+language: node_js
+node_js:
+  - 10
 
-before_install:
-  - docker build -t flavioseixas/docker-react -f Dockerfile.dev .
+install:
+  - npm install
 
 script:
-  - docker run -e CI=true flavioseixas/docker-react npm run test
-
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  local_dir: /app/build
-  on:
-    branch: master
+  - npm run test
+  - npm run build
