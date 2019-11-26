@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-  - 10
+  - "stable"
 
-install:
-  - npm install
+cache:
+  directories:
+  - node_modules
 
 script:
   - npm run test
@@ -13,6 +14,6 @@ deploy:
   provider: pages
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  local_dir: /app/build
+  local_dir: build
   on:
     branch: master
